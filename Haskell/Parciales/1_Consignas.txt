@@ -5,22 +5,22 @@ En esta sección encontrarás enlaces a las consignas de los parciales resueltos
 Parciales
 
 Nombre del Parcial: CraftMine
-- Año 2023: https://docs.google.com/document/d/1i9rB5AzRswz_0Z4T1v5IgRhC3UT-d_Ib1K7LUeq5sa0/edit
+- Año 2023: //https://docs.google.com/document/d/1i9rB5AzRswz_0Z4T1v5IgRhC3UT-d_Ib1K7LUeq5sa0/edit
 
 Nombre del Parcial: Alfajores
-- Año 2023: https://docs.google.com/document/d/1m8gRD-gheA2fDbiDXc7-dpiymkhDQRbmzr-plL5BGuA/edit
+- Año 2023: //https://docs.google.com/document/d/1m8gRD-gheA2fDbiDXc7-dpiymkhDQRbmzr-plL5BGuA/edit
 
 Nombre del Parcial: Star Wars: Haskell Espacial
-- Año xxxx: https://docs.google.com/document/d/1rbOy1rIFmBxMRhTOWvI-u097l9KatHRbqt5KBXvVSfI/edit
+- Año xxxx: //https://docs.google.com/document/d/1rbOy1rIFmBxMRhTOWvI-u097l9KatHRbqt5KBXvVSfI/edit
 
 Nombre del Parcial: Los Simpson
-- Año xxxx: https://docs.google.com/document/d/1fIdfbyhyio8K2Wx9GaEZZ5cjU8P1rY8ZzdO2p4SP4OE/edit
+- Año xxxx: //https://docs.google.com/document/d/1fIdfbyhyio8K2Wx9GaEZZ5cjU8P1rY8ZzdO2p4SP4OE/edit
 
 Nombre del Parcial: Super Mario Bros
-- Año 2023: https://docs.google.com/document/d/16YC_GPPnety13jm46Y6uhlpBdv9zb7m1HgwDjfMILG0/edit#heading=h.rdm4at4lk1gl
+- Año 2023: //https://docs.google.com/document/d/16YC_GPPnety13jm46Y6uhlpBdv9zb7m1HgwDjfMILG0/edit#heading=h.rdm4at4lk1gl
 
 
 Otros Recursos
-- Página Oficial de PdeP: https://www.pdep.com.ar/
+- Página Oficial de PdeP: //https://www.pdep.com.ar/
 
 Si tienes consignas adicionales que desees agregar, por favor abre un pull request o un issue en el repositorio.
