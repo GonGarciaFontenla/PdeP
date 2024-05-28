@@ -36,6 +36,16 @@ Para instalar Prolog, sigue las instrucciones disponibles en el siguiente enlace
 
 Para instalar Wollok, sigue las instrucciones disponibles en el siguiente enlace: [Instalación de Wollok](https://www.wollok.org/instalacion/).
 
+## Contribuidores
+
+- **Gonzalo Garcia Fontenla**
+  - GitHub: [GonGarciaFontenla](https://github.com/GonGarciaFontenla)
+  - Email: ggarciafontenla@frba.utn.edu.ar
+
+- **Tomas Emiliano Bertella**
+  - GitHub: [berty-tb](https://github.com/berty-tb)
+  - Email: tbertella@frba.utn.edu.ar
+
 ## Contribuciones
 
 1. Haz un *fork* de este repositorio.
