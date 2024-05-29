@@ -1,6 +1,6 @@
 # Paradigmas de la Programación (PdeP)
 
-Este repositorio contiene materiales, guías, y ejemplos de código relacionados con la materia Paradigmas de la Programación (PdeP) de la UTN FRBA.
+Este repositorio contiene materiales, guías y ejemplos de código relacionados con la materia Paradigmas de la Programación (PdeP) de la UTN FRBA.
 
 ## Contenido
 
@@ -53,6 +53,10 @@ Para instalar Wollok, sigue las instrucciones disponibles en el siguiente enlace
 3. Realiza tus cambios y haz un *commit* (`git commit -m 'Descripción de los cambios'`).
 4. Sube tus cambios a tu *fork* (`git push origin nombre-de-tu-rama`).
 5. Abre un *pull request* en este repositorio.
+
+### Video Tutorial de cómo colaborar
+
+Aprende cómo colaborar con este repositorio viendo este [video tutorial](https://youtu.be/mheZvsp0Zyc?si=SYRVsZD2QGTAVg00).
 
 ## Notas
 
