@@ -162,8 +162,8 @@ cobra el dinero por el presupuesto de la misma y agrega esa reparación a su his
 --Si no es malvado y la reparación es difícil, pierde todas sus herramientas buenas.
 --Si no es malvado ni es difícil la reparación, sólo se olvida la primera de sus herramientas.
 -}
-puedeHacerReparacionOesMalvado :: Reparacion -> Plomero -> Bool
-puedeHacerReparacionOesMalvado reparacion plomero = requerimiento reparacion plomero || esMalvadoConMartillo plomero
+puedeHacerReparacion :: Reparacion -> Plomero -> Bool
+puedeHacerReparacion reparacion plomero = requerimiento reparacion plomero || esMalvadoConMartillo plomero
 
 esMalvadoConMartillo :: Plomero -> Bool
 esMalvadoConMartillo plomero 
@@ -190,6 +190,8 @@ sacarPrimerElemento = tail
 
 efectosReparacion :: Reparacion -> Plomero -> Plomero
 efectosReparacion reparacion plomero
-    |esMalvado plomero = agregarHerramienta ()
+    |esMalvado plomero = robarHerramienta plomero destornillador
     |reparacionDificil reparacion = pierdeHerramientasBuenas plomero 
     |otherwise = plomero {caja = sacarPrimerElemento (caja plomero)}
+
+hacerReparacion :: Reparacion -> Plomero
