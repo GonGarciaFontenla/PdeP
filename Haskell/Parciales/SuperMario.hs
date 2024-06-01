@@ -5,6 +5,7 @@ import System.Mem (performGC)
 import GHC.Base (List)
 import Data.Char (isUpper)
 import GHC.Generics (Generic(Rep))
+import Test.Hspec (xcontext)
 
 doble :: Number -> Number
 doble numero = numero + numero
@@ -42,8 +43,11 @@ Wario, tiene 50 centavos encima, no hizo reparaciones, lleva infinitas llaves fr
  un peso más cara. La inflación lo está matando. 
 -}
 
-mario :: Plomero
-mario = Plomero "Mario" [llaveInglesa, martillo] [] 1200
+mario :: Plomero 
+mario = Plomero "Mario" [llaveInglesa,llaveInglesa,martillo] [] 1200
+
+gonza :: Plomero
+gonza = Plomero "Gonza" [llaveInglesa, martillo] [] 500
 
 wario :: Plomero
 wario = Plomero "Wario" (herramientaInfinita llaveFrancesa) [] 0.50
@@ -58,7 +62,7 @@ llaveFrancesa :: Herramienta
 llaveFrancesa = Herramienta "llave francesa" 1 Hierro
 
 destonillador :: Herramienta
-destonillador = Herramienta "Destonillador" 0 Plastico
+destonillador = Herramienta "destonillador" 0 Plastico
 
 
 herramientaInfinita :: Herramienta -> [Herramienta]
@@ -162,8 +166,20 @@ cobra el dinero por el presupuesto de la misma y agrega esa reparación a su his
 --Si no es malvado y la reparación es difícil, pierde todas sus herramientas buenas.
 --Si no es malvado ni es difícil la reparación, sólo se olvida la primera de sus herramientas.
 -}
+
+hacerReparacion :: Reparacion -> Plomero -> Plomero
+hacerReparacion reparacion plomero 
+    |puedeHacerReparacion reparacion plomero = efectosReparacion reparacion (cobrarDinero reparacion (agregarReparacion reparacion plomero))
+    |otherwise = plomero {dinero = dinero plomero + 100}
+
 puedeHacerReparacion :: Reparacion -> Plomero -> Bool
 puedeHacerReparacion reparacion plomero = requerimiento reparacion plomero || esMalvadoConMartillo plomero
+
+efectosReparacion :: Reparacion -> Plomero -> Plomero
+efectosReparacion reparacion plomero
+    |esMalvado plomero =  agregarHerramienta destonillador plomero
+    |reparacionDificil reparacion = pierdeHerramientasBuenas plomero 
+    |otherwise = plomero {caja = sacarPrimerElemento (caja plomero)}
 
 esMalvadoConMartillo :: Plomero -> Bool
 esMalvadoConMartillo plomero 
@@ -176,9 +192,6 @@ cobrarDinero reparacion plomero = plomero {dinero = dinero plomero + presupuesto
 agregarReparacion :: Reparacion -> Plomero -> Plomero
 agregarReparacion reparacion plomero = plomero {historial = reparacion : historial plomero}
 
-robarHerramienta :: Plomero -> Herramienta -> Plomero
-robarHerramienta plomero herramienta = plomero {caja = herramienta : caja plomero}
-
 pierdeHerramientasBuenas :: Plomero -> Plomero
 pierdeHerramientasBuenas plomero = plomero {caja = soloMalas (caja plomero)}
 
@@ -186,12 +199,52 @@ soloMalas :: [Herramienta] -> [Herramienta]
 soloMalas = filter (not . esBuena) 
 
 sacarPrimerElemento :: [Herramienta] -> [Herramienta]
-sacarPrimerElemento = tail 
+sacarPrimerElemento [] = []
+sacarPrimerElemento (_:xs) = xs
 
-efectosReparacion :: Reparacion -> Plomero -> Plomero
-efectosReparacion reparacion plomero
-    |esMalvado plomero = robarHerramienta plomero destornillador
-    |reparacionDificil reparacion = pierdeHerramientasBuenas plomero 
-    |otherwise = plomero {caja = sacarPrimerElemento (caja plomero)}
+{-
+Nintendo, pese a ser una empresa de consolas y juegos, gana millones de dólares con su red de plomeros. 
+Cada plomero realiza varias reparaciones en un día. Necesitamos saber cómo afecta a un plomero una jornada de trabajo. 
+Bajan línea desde Nintendo que no usemos recursividad.
+-}
+type Reparaciones = [Reparacion]
 
-hacerReparacion :: Reparacion -> Plomero
+jornadaTrabajo :: Reparaciones -> Plomero -> Plomero
+jornadaTrabajo reparaciones plomero = foldl (flip hacerReparacion) plomero reparaciones
+
+{-
+Nintendo beneficia a sus plomeros según ciertos criterios, es por eso que necesita saber, dado un conjunto de reparaciones a realizar en 
+una jornada laboral, cuál de todos sus empleados es:
+-}
+--El empleado más reparador: El plomero que más reparaciones tiene en su historial una vez realizada su jornada laboral.
+type Plomeros = [Plomero]
+
+masReparador :: Plomeros -> Reparaciones -> Plomero
+masReparador plomeros reparaciones = maximoSegunReparaciones cantidadReparaciones (despuesDeUnaJornadaLaboral plomeros reparaciones)
+
+maximoSegunReparaciones :: (Plomero -> Number) -> Plomeros -> Plomero
+maximoSegunReparaciones _ [x] = x
+maximoSegunReparaciones cantidadReparaciones (x:y:xs)
+    |cantidadReparaciones x > cantidadReparaciones y = maximoSegunReparaciones cantidadReparaciones (x:xs)
+    |otherwise = maximoSegunReparaciones cantidadReparaciones (y:xs)
+
+cantidadReparaciones :: Plomero -> Number
+cantidadReparaciones plomero = length (historial plomero)
+
+despuesDeUnaJornadaLaboral :: Plomeros -> Reparaciones -> Plomeros
+despuesDeUnaJornadaLaboral plomeros reparaciones = map (jornadaTrabajo reparaciones) plomeros
+
+--El empleado más adinerado: El plomero que más dinero tiene encima una vez realizada su jornada laboral.
+
+masAdinerado :: Plomeros -> Reparaciones -> Plomero
+masAdinerado plomeros reparaciones = maximoSegunReparaciones cantidadDinero (despuesDeUnaJornadaLaboral plomeros reparaciones)
+
+cantidadDinero :: Plomero -> Number
+cantidadDinero = dinero 
+
+--El empleado que más invirtió: El plomero que más plata invertida tiene entre las herramientas que le quedaron una vez realizada su jornada laboral.
+masInvirtio :: Plomeros -> Reparaciones -> Plomero
+masInvirtio plomeros reparaciones = maximoSegunReparaciones cantidadHerramientas (despuesDeUnaJornadaLaboral plomeros reparaciones)
+
+cantidadHerramientas :: Plomero -> Number
+cantidadHerramientas plomero = length (caja plomero)
