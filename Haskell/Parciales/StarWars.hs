@@ -5,7 +5,7 @@ import System.Mem (performGC)
 
 doble :: Number -> Number
 doble numero = numero + numero
-
+ 
 {-
 Las fuerzas rebeldes analizan diferentes estrategias para enfrentarse a las naves espaciales imperiales de Darth Vader. 
 Debido a los bajos números de la resistencia decidieron que por cada flota enemiga van a enviar a una única nave para
