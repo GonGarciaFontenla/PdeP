@@ -6,7 +6,7 @@ data Heroe = Heroe {
     artefactos :: [Artefacto],
     tareas :: [Tarea] --una tarea es una función que va de héroe a héroe, pero se le pone un alias para mejorar la expresividad 
 } deriving (Show)
-
+ 
 data Artefacto = Artefacto {
     nombre :: String,
     rareza :: Int
