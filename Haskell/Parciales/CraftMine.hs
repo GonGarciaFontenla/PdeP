@@ -5,7 +5,7 @@ import System.Mem (performGC)
 
 doble :: Number -> Number
 doble numero = numero + numero
-
+ 
 
 type Material = String
 
