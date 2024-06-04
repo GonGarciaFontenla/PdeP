@@ -16,6 +16,9 @@ Nombre del Parcial: Super Mario Bros
 Nombre del Parcial: Star Wars: Haskell Espacial
 - Año 2022: https://docs.google.com/document/d/1rbOy1rIFmBxMRhTOWvI-u097l9KatHRbqt5KBXvVSfI/edit
 
+Nombre del Parcial: Harry Postre y el Pastel Currificado
+- Año 2022: https://docs.google.com/document/d/1jNjWDojVUCg_PtY3_0XLCbGYkEOP-Jus0_BRzGGI2_o/edit
+
 Nombre del Parcial: Functional Master Series 
 - Año 2021: https://docs.google.com/document/d/1AtD9mZGiUNEKmZ_aaWSCoNaeowLTMUhFRVHm-GZIF-w/edit
 
