@@ -13,11 +13,17 @@ Nombre del Parcial: Alfajores
 Nombre del Parcial: Super Mario Bros
 - Año 2023: https://docs.google.com/document/d/16YC_GPPnety13jm46Y6uhlpBdv9zb7m1HgwDjfMILG0/edit#heading=h.rdm4at4lk1gl
 
+Nombre del Parcial: Naruto
+- Año 2023: https://drive.google.com/file/d/1s91Ta3yrfcJltTG-i_2lll8kwUSMwFeh/view
+
 Nombre del Parcial: Star Wars: Haskell Espacial
 - Año 2022: https://docs.google.com/document/d/1rbOy1rIFmBxMRhTOWvI-u097l9KatHRbqt5KBXvVSfI/edit
 
 Nombre del Parcial: Harry Postre y el Pastel Currificado
 - Año 2022: https://docs.google.com/document/d/1jNjWDojVUCg_PtY3_0XLCbGYkEOP-Jus0_BRzGGI2_o/edit
+
+Nombre del Parcial: Suprema
+- Año 2022: https://docs.google.com/document/d/1PZoaKXMknLCE4AF4CBemvQUrOd8kMsnirS4YHJdn26k/edit
 
 Nombre del Parcial: Functional Master Series 
 - Año 2021: https://docs.google.com/document/d/1AtD9mZGiUNEKmZ_aaWSCoNaeowLTMUhFRVHm-GZIF-w/edit
@@ -28,6 +34,12 @@ Nombre del Parcial: Carreras
 Nombre del Parcial: Minigolfito
 - Año 2020: https://docs.google.com/document/d/1LeWBI6pg_7uNFN_yzS2DVuVHvD0M6PTlG1yK0lCvQVE/edit#heading=h.wn9wma8e1ale
 
+Nombre del Parcial: Series
+- Año 2020: https://docs.google.com/document/d/1u5fGw-Mpv3BM8cFVlc46KzdKHDx4GhhQoS31xlZpGWA/edit
+
+Nombre del Parcial: Influencers
+- Año 2020: https://docs.google.com/document/d/1YILaWRjUUUrnwpxjtRjq3Gc4hQ82ZqguQlGm3XVmJOI/edit?hl=es
+
 Nombre del Parcial: Escuelita de Thanos
 - Año 2019: https://docs.google.com/document/d/1IKrJkdbPyoxfHqREIfqzxpsBdANcL2g9gvs9t-IR30E/edit#heading=h.ov2zcvcgcy0t
 
@@ -36,6 +48,10 @@ Nombre del Parcial: Los Simpson
 
 Nombre del Parcial: Heroes_de_leyenda
 - Año xxxx: https://docs.google.com/document/d/1-99rJlDO-mZLzJMwKLThLFKEXAmziyZJEfHtYzUV0jU/edit?usp=sharing
+
+Nombre del Parcial: Dune
+- Año xxxx: https://docs.google.com/document/d/1vfmY4xOaGVMtDCixKtA6rDugwWM86ZJaL7K5vDKcksA/edit?usp=sharing
+
 
 Otros Recursos
 - Página Oficial de PdeP: https://www.pdep.com.ar/
