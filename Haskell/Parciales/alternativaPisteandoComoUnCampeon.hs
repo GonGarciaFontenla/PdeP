@@ -1,4 +1,4 @@
---enunciado: https://github.com/GonGarciaFontenla/PdeP/commit/23ed0b1816ed0dc730f2488ad649c1c171a4cb60
+--enunciado: https://docs.google.com/document/d/1ULbIycNlP8XNz9qgvECuw2rsLv2_cay30jcpR-OB6jQ/edit#heading=h.bzijjzpynqq4
 
 import Text.Show.Functions ()
 import Data.List(genericLength, intersect)
