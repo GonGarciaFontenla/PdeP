@@ -102,7 +102,7 @@ tramito = recta 280
 boxes :: Tramo -> Tramo
 boxes tramo auto
     | estaEnBuenEstado auto = tramo auto
-    | otherwise = sumarTiempo 10 . tramo $ auto
+    | otherwise = sumarTiempo 10 . tramo . reparar $ auto
 
 parteMojada :: Tramo -> Tramo
 parteMojada tramo auto = sumarTiempo (0.5 * tiempoAgregadoPorTramo tramo auto) . tramo $ auto
