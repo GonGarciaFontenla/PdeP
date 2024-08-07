@@ -63,31 +63,55 @@ mismaCasa([Mago1, Mago2 | Magos]):-
 %----------PARTE 2----------%
 %Malas acciones: 
 %Andar de noche fuera de la cama (que resta 50 puntos). 
-accion(fueraCama, -50). 
+%accion(fueraCama, -50). 
 %Ir a lugares prohibidos: cantidad de puntos que se resta por ir a un lugar prohibido se indicará para cada lugar.
-accion(bosque, -50).
-accion(biblioteca, -10).
-accion(tercerPiso, -75). 
+%accion(bosque, -50).
+%accion(biblioteca, -10).
+%accion(tercerPiso, -75). 
 
 %Buenas acciones: 
-accion(ajedrez, 50). 
-accion(intelecto, 50).
-accion(ganarVoldemort, 60).
+%accion(ajedrez, 50). 
+%accion(intelecto, 50).
+%accion(ganarVoldemort, 60).
+
+
 
 %Registrar las distintas acciones que hicieron los alumnos de Hogwarts durante el año.
 %Harry anduvo fuera de cama, fue al bosque y al tercer piso y vencion a Voldemort. 
 hizoAccion(harry, fueraCama).
-hizoAccion(harry, bosque). 
-hizoAccion(harry, tercerPiso).
-hizoAccion(harry, ganarVoldemort). 
+hizoAccion(harry, irA(bosque)). 
+hizoAccion(harry, irA(tercerPiso)).
+hizoAccion(harry, buenaAccion(60, ganarVoldemort)). 
 %Hermione fue al tercer piso, a la sección restringida de la biblioteca y salvo a sus amigos de una muerte horrible.
-hizoAccion(hermione, tercerPiso).
-hizoAccion(hermione, biblioteca). 
-hizoAccion(hermione, intelecto). 
+hizoAccion(hermione, irA(tercerPiso)).
+hizoAccion(hermione, irA(biblioteca)). 
+hizoAccion(hermione, buenaAccion(50, intelecto)). 
+hizoAccion(hermione, responderPregunta(dondeSeEncuentraUnBezoar, 20, snape)).
+hizoAccion(hermione, responderPregunta(comoHacerLevitarUnaPluma, 25, flitwick)).
 %Draco fue a las mazmorras.
-hizoAccion(draco, mazmorras).
+hizoAccion(draco, irA(mazmorras)).
 %Ron gano una partida de ajedrez mágico.
-hizoAccion(ron, ajedrez). 
+hizoAccion(ron, buenaAccion(50, ajedrez)). 
+
+%Puntajes que generan las acciones: 
+puntajeAcciones(fueraCama, -50). 
+
+puntajeAcciones(irA(Lugar), PuntajeQueResta):-
+    lugarProhibido(Lugar, PuntajeQueResta),
+    PuntajeQueResta is PuntajeQueResta. 
+
+puntajeAcciones(buenaAccion(Puntaje, _), Puntaje). 
+
+puntajeAcciones(responderPregunta(_, Dificultad, snape), Puntos):-
+    Puntos is Dificultad // 2. 
+
+puntajeAcciones(responderPregunta(_, Dificultad, Profesor), Dificultad):-
+    Profesor \= snape. 
+
+%Lugares prohibidos
+lugarProhibido(bosque, -50).
+lugarProhibido(biblioteca, -10).
+lugarProhibido(tercerPiso, -75).
 
 %predicado esDe/2 que relaciona a la persona con su casa.
 esDe(hermione, gryffindor).
@@ -99,7 +123,7 @@ esDe(luna, ravenclaw).
 %Saber si un mago es buen alumno, que se cumple si hizo alguna acción y ninguna de las cosas que hizo se considera una mala acción.
 esBuenAlumno(Mago):-
     esDe(Mago, _), %Por tema de inversibilidad. Se podria hacer varios hechos de solo los magos, pero tomo este que ya esta dado por la consigna. 
-    forall((hizoAccion(Mago, Accion), accion(Accion, Puntaje)), Puntaje >= 0). 
+    forall((hizoAccion(Mago, Accion), puntajeAcciones(Accion, Puntaje)), Puntaje >= 0). 
 
 %Saber si una acción es recurrente, que se cumple si más de un mago hizo esa misma acción.
 accionRecurrente(Accion):-
@@ -110,7 +134,7 @@ accionRecurrente(Accion):-
 %Saber cuál es el puntaje total de una casa, que es la suma de los puntos obtenidos por sus miembros.
 puntajeTotal(Casa, PuntajeTotal):-
     esDe(_,Casa),
-    findall(Puntaje, (esDe(Mago, Casa), hizoAccion(Mago, Accion), accion(Accion, Puntaje)), Puntajes),
+    findall(Puntaje, (esDe(Mago, Casa), hizoAccion(Mago, Accion), puntajeAcciones(Accion, Puntaje)), Puntajes),
     sum_list(Puntajes, PuntajeTotal).
 
 %Saber cuál es la casa ganadora de la copa, que se verifica para aquella casa que haya obtenido una cantidad mayor de puntos que todas las otras.
