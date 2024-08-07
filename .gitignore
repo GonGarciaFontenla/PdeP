@@ -1,7 +1,8 @@
 # Ignorar todos los archivos
 *
 
-# Permitir solo archivos con las extensiones .hs, .pl y .wlk
+# Permitir directorios y archivos con las extensiones .hs, .pl y .wlk
+!*/
 !.gitignore
 !*.hs
 !*.pl
