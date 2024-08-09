@@ -55,7 +55,29 @@ menosEstrellas(R1, R2):-
     %En los menú por pasos, el precio es el indicado más la suma de los precios de todos los vinos incluidos, pero dividido
     %en la cantidad de comensales. Los vinos importados pagan una tasa aduanera del 35% por sobre su precio publicado.
 precioPromedio(Restaurante, PrecioProm):-
-    menu(Restaurante, _), 
-    calcularPromedioPrecio(Restaurante, PrecioProm). 
+    findall(Precio, calcularPrecioPromedio(Restaurante, Precio), Precios), 
+    sumlist(Precios, SumaPrecios),
+    length(Precios, CantidadMenus), 
+    CantidadMenus > 0, 
+    PrecioProm is SumaPrecios / CantidadMenus. 
 
+calcularPrecioPromedio(Restaurante, Precio):-
+    menu(Restaurante, carta(Precio, _)). 
 
+calcularPrecioPromedio(Restaurante, PrecioTotal):- 
+    menu(Restaurante, pasos(_, Precio, Vinos, Comensales)), 
+    calcularPrecioVinos(Vinos, PrecioVino), 
+    PrecioTotal is (Precio + PrecioVino) / Comensales. 
+
+calcularPrecioVinos(Vinos, PrecioTotalVinos):-
+    findall(Precio, (member(Vino,Vinos), calcularPrecioVino(Vino, Precio)), PrecioVinos), 
+    sumlist(PrecioVinos, PrecioTotalVinos). 
+
+calcularPrecioVino(Vino, PrecioVino):-
+    vino(Vino, argentina, Precio),  
+    PrecioVino is Precio.
+
+calcularPrecioVino(Vino, PrecioVino):-
+    vino(Vino, PaisProduccion, Precio), 
+    PaisProduccion \= argentina,
+    PrecioVino is Precio * 1.35. 
