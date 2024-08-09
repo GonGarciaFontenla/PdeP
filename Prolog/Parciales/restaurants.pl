@@ -2,7 +2,7 @@ restaurante(panchoMayo, 2, barracas).
 restaurante(finoli, 3, villaCrespo).
 restaurante(superFinoli, 5, villaCrespo).
 
-menu(panchoMayo, carta(1000, pancho)).
+menu(panchoMayo, carta(1000, pancho)).  
 menu(panchoMayo, carta(200, hamburguesa)).
 menu(finoli, carta(2000, hamburguesa)).
 menu(finoli, pasos(15, 15000, [chateauMessi, francescoliSangiovese, susanaBalboaMalbec], 6)).
@@ -35,5 +35,32 @@ malOrganizado(Restaurante):-
     menu(Restaurante, pasos(Pasos,_ , Vinos, _)), 
     length(Vinos, CantVinos),
     Pasos > CantVinos. 
-     
+
+%Qué restaurante es copia barata de qué otro restaurante, lo que sucede cuando el primero tiene todos los platos
+%a la carta que ofrece el otro restaurante, pero a un precio menor. Además, no puede tener más estrellas que el otro. 
+copiaBarata(RestoCopia, RestoCopiado):-
+    menu(RestoCopia, _), 
+    menu(RestoCopiado,_),
+    RestoCopia \= RestoCopiado,
+    forall(menu(RestoCopiado, carta(PrecioCopiado, Menu)), (menu(RestoCopia, carta(PrecioCopia, Menu)), PrecioCopia < PrecioCopiado)), 
+    menosEstrellas(RestoCopia, RestoCopiado). 
+
+menosEstrellas(R1, R2):-
+    restaurante(R1,Estrellas, _), 
+    restaurante(R2, Estrellas2,_), 
+    Estrellas < Estrellas2.  
+    
+%Cuál es el precio promedio de los menúes de cada restaurante, por persona. 
+    %En los platos, se considera el precio indicado ya que se asume que es para una persona.
+    %En los menú por pasos, el precio es el indicado más la suma de los precios de todos los vinos incluidos, pero dividido
+    %en la cantidad de comensales. Los vinos importados pagan una tasa aduanera del 35% por sobre su precio publicado.
+precioPromedio(Restaurante, PrecioProm):-
+    menu(Restaurante, _), 
+    calcularPromedioPrecio(Restaurante, PrecioProm). 
+
+calcularPromedioPrecio(Restaurante, PrecioProm):-
+    restaurante(Restaurante, _, _), 
+    PrecioProm = 1200, 
+    forall(menu(Restaurante, carta(Precio, _)), PrecioProm is PrecioProm + Precio).  
+
 
