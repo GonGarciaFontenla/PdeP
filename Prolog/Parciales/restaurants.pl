@@ -58,9 +58,4 @@ precioPromedio(Restaurante, PrecioProm):-
     menu(Restaurante, _), 
     calcularPromedioPrecio(Restaurante, PrecioProm). 
 
-calcularPromedioPrecio(Restaurante, PrecioProm):-
-    restaurante(Restaurante, _, _), 
-    PrecioProm = 1200, 
-    forall(menu(Restaurante, carta(Precio, _)), PrecioProm is PrecioProm + Precio).  
-
 
