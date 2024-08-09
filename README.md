@@ -46,6 +46,10 @@ Para instalar Wollok, sigue las instrucciones disponibles en el siguiente enlace
   - GitHub: [berty-tb](https://github.com/berty-tb)
   - Email: tbertella@frba.utn.edu.ar
 
+- **Azul Martin Petrocelli**
+  - GitHub: [AzulPetrocelli](https://github.com/AzulPetrocelli)
+  - Email: apetrocelli@frba.utn.edu.ar
+
 ## Contribuciones
 
 1. Haz un *fork* de este repositorio.
