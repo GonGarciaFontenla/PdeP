@@ -138,6 +138,6 @@ carreraEnunciado = [rojo, blanco, negro, azul]
 --Punto 5
 --a
 -- Si, se podría integrar fácilmente con mi solución, de hecho lo hice mas arriba para comprobarlo, simplemente se crea un nuevo evento en el que el criterio sea el color del auto a impactar y el efecto sea el impacto, reutilizando tambinén la función de afectarALosQueCumplen
-
+ 
 --b
 -- Si una carrera se conformara por infinitos autos, ninguna de las funciones mencionadas podrían dar una respuesta ya que ambas implican comparar el auto con todo el resto de autos de la lista, si este no fuera el caso y se especificara la cantidad de autos a comparar o se quisiera medir un auto con respecto a otro utilizando índices fijos para la lista, si que sería posible obtener un resultado, ya que gracias a la lazy evaluation de haskell que primero se fija qué tiene que hacer y luego evalua los parámetros, solo tomará lo que necesite y no todo el resto de la lista infinita, la cual ni siquiera calculará. 
