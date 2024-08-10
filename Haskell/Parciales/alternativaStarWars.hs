@@ -1,6 +1,6 @@
 --enunciado: //docs.google.com/document/d/1rbOy1rIFmBxMRhTOWvI-u097l9KatHRbqt5KBXvVSfI/edit
 
-import Text.Show.Functions ()
+import Text.Show.Functions () 
 import Data.List(genericLength)
 
 data Nave = Nave {
