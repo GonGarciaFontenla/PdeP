@@ -66,12 +66,13 @@ de $1000 por cada ciudad diferente en la que se alojó (con factura válida). Ha
 penalidad de $15000 si entre todas las facturas presentadas hay alguna que sea trucha.
 Además, el monto máximo a devolver es de $100000.
 */
-montoDevolverPersona(Persona, MontoTotal):-
+montoDevolverPersona(Persona, DevolucionTotal):-
     factura(Persona, _), 
     montoPorFacturas(Persona, MontoFacturas), 
     montoPorCiudadesDiferentes(Persona, MontoCiudades), 
     montoDePenalidad(Persona, MontoPenalidad), 
-    MontoTotal is MontoFacturas + MontoCiudades - MontoPenalidad.
+    MontoTotal is MontoFacturas + MontoCiudades - MontoPenalidad,
+    montoADevolverSiSuperaONoTope(MontoTotal, DevolucionTotal).
 
 montoPorFacturas(Persona, MontoPorFacturas):-
     findall(Monto, montoDevolucionPorFactura(Persona, Monto), ListaMontos), 
@@ -115,6 +116,11 @@ montoDePenalidad(Persona, 0) :-
 montoDePenalidad(Persona, 15000) :-
     factura(Persona, DetalleDeFactura),
     facturaTrucha(DetalleDeFactura).
+
+montoADevolverSiSuperaONoTope(Monto, 100000):-
+    Monto > 100000.
+montoADevolverSiSuperaONoTope(Monto, Monto):-
+    Monto =< 100000.
 
 %Qué destinos son sólo de trabajo. Son aquellos destinos que si bien tuvieron vuelos
 %hacia ellos, no tuvieron ningún turista que se alojen allí o tienen un único hotel adherido.
