@@ -67,7 +67,7 @@ realizarCombinaciones([_|EmpleadosPosibles], Personas):-
 
 %----------PUNTO 5----------%
 %dodain hizo las siguientes ventas el lunes 10 de agosto: golosinas por $ 1200, cigarrillos Jockey, golosinas por $ 50}
-ventas(dodain, fecha(10, agosto), [golosinas(1200), cigarrillos([jockey]), golosinas(10)]).
+ventas(dodain, fecha(10, 8), [golosinas(1200), cigarrillos([jockey]), golosinas(10)]).
 
 %dodain hizo las siguientes ventas el miércoles 12 de agosto: 8 bebidas alcohólicas, 1 bebida no-alcohólica, golosinas por $ 10
 ventas(dodian, fecha(12, 8), [bebidas(true, 8), bebidas(false, 1), golosinas(10)]). 
