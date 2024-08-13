@@ -40,27 +40,10 @@ universidadObrera(Universidad):-
 
 
 %Si una carrera es exigente en una universidad, es decir, que ningún estudiante de dicha carrera en esa universidad puede trabajar o estudiar otra carrera a la vez.
-carreraExigente(Carrera, Universidad):- 
-    estudia(_, Carrera, Universidad),
-    nadieEnOtraCarrera(Carrera, Universidad), 
-    nadieTrabaja(Carrera, Universidad). 
-        
-nadieEnOtraCarrera(Carrera, Universidad):- 
-    forall(estudia(Estudiante, Carrera, Universidad), not(anotadoOtraCarrera(Estudiante))).
-        
-anotadoOtraCarrera(Estudiante):-
-    estudia(Estudiante, Carrera1, _), 
-    estudia(Estudiante, Carrera2, _), 
-    Carrera1 \= Carrera2.
-        
-nadieTrabaja(Carrera, Universidad):- 
-    forall(estudia(Estudiante, Carrera, Universidad), not(trabaja(Estudiante, _, _))).
-
-%%Opcion 2 --> Usando un solo forall. Habria que pensar mejor nombre para los predicados. 
+%Habria que pensar mejor nombre para los predicados. 
 carreraExigente2(Carrera, Universidad):- 
     estudia(_, Carrera, Universidad),
-    nadieOtraCarreraTrabaja(Carrera, Universidad), 
-    nadieTrabaja(Carrera, Universidad). 
+    nadieOtraCarreraTrabaja(Carrera, Universidad). 
 
 nadieOtraCarreraTrabaja(Carrera, Universidad):- 
     forall(estudia(Estudiante, Carrera, Universidad), not(anotadoOtraCarreraYTrabaja(Estudiante))).
