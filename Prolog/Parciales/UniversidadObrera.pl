@@ -19,6 +19,8 @@ trabaja(sofia, empleoPublico(defensoria, estado, legal), 30).
 trabaja(luis, empleoPublico(hospitalDubarri, municipal, salud), 50).
 trabaja(diego, empleoPrivado(constructoraPepe, construccion), 30).
 trabaja(fernando, planSocial(algo), 20). 
+%emprendedor(emprendimiento, inversores, rubro).
+trabaja(jorge, emprendedor(tuerquitasJorge, [michellin, ferreteriaPepe, metalurgicaPepe], automotriz)). 
 
 organizacion(algo, legal). 
 
@@ -99,6 +101,8 @@ rubroTrabajador(empleoPrivado(_, Rubro), Rubro).
 rubroTrabajador(empleoPublico(_, _, Rubro), Rubro). 
 rubroTrabajador(planSocial(Organizacion), Rubro) :-
     organizacion(Organizacion, Rubro).
+%Obtener rubro de emprendedores. 
+rubroTrabajador(emprendedor(_, _, Rubro), Rubro). 
 
 %Las carreras demandadas, que son aquellas en las que todos los estudiantes de esa carrera, en cualquier universidad, trabajan en algo vinculado con dicha carrera.
 carreraDemandada(Carrera):-
@@ -108,3 +112,7 @@ carreraDemandada(Carrera):-
 trabajaEnRubroVinculado(Estudiante):- 
     trabaja(Estudiante, _, _), 
     not(trabajadorDesvinculados(Estudiante)).
+
+%Agregarla de una manera original, en la que se necesite recurrir a otros predicados para obtener el rubro y que todo siga funcionando. Justificar conceptualmente.
+    %El concepto que nos permite incluir nuevos rubros sin hacer modificaciones en los predicados es el polimorfismo. 
+    %Gracias al polimorfimos, los predicados tienen la capacidad de manejar diferentes tipos de datos.
