@@ -23,7 +23,7 @@ plato(frutillasConCrema, postre(265)).
 critico(antonEgo). 
 critico(cormillot). 
 critico(martiniano). 
-critico(gordonRamsey). 
+critico(gordonRamsey).  
 
 %Saber si un plato está en el menú de un restaurante, que es cuando alguno de los empleados lo sabe cocinar.
 estaEnElMenu(Restaurante, Plato):-
