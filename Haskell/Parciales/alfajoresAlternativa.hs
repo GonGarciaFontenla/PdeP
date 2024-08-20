@@ -204,4 +204,4 @@ gastarDinero :: Cliente -> Alfajor -> Cliente
 gastarDinero cliente alfajor = cliente {dinero = dinero cliente - precioAlfajor alfajor}
 
 comprarLosQueGustan :: Cliente -> [Alfajor] -> Cliente
-comprarLosQueGustan cliente listaAlfajores = foldl comprarAlfajor cliente (cualesGustan cliente listaAlfajores)
+comprarLosQueGustan cliente listaAlfajores = foldl comprarAlfajor cliente (cualesGustan cliente listaAlfajores) 

@@ -61,21 +61,6 @@ mismaCasa([Mago1, Mago2 | Magos]):-
 
 
 %----------PARTE 2----------%
-%Malas acciones: 
-%Andar de noche fuera de la cama (que resta 50 puntos). 
-%accion(fueraCama, -50). 
-%Ir a lugares prohibidos: cantidad de puntos que se resta por ir a un lugar prohibido se indicará para cada lugar.
-%accion(bosque, -50).
-%accion(biblioteca, -10).
-%accion(tercerPiso, -75). 
-
-%Buenas acciones: 
-%accion(ajedrez, 50). 
-%accion(intelecto, 50).
-%accion(ganarVoldemort, 60).
-
-
-
 %Registrar las distintas acciones que hicieron los alumnos de Hogwarts durante el año.
 %Harry anduvo fuera de cama, fue al bosque y al tercer piso y vencion a Voldemort. 
 hizoAccion(harry, fueraCama).

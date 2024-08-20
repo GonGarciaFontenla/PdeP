@@ -1,6 +1,6 @@
 --enunciado: https://docs.google.com/document/d/1ilESbsH_umXHRznhN0SOOhzjaR7f52qYOy677lczu7s/edit
 
-import Text.Show.Functions ()
+import Text.Show.Functions () 
 import Data.List(genericLength, intersect)
 
 

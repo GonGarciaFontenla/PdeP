@@ -10,7 +10,7 @@ data Personaje = Personaje {
 } deriving (Show, Eq)
 
 berty :: Personaje
-berty = Personaje {
+berty = Personaje { 
     nombre = "Berty",
     puntaje = 0,
     inventario = [Madera, Fosforo, Pollo, Pollo, Sueter]
