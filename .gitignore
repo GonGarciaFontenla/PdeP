@@ -1,9 +1,12 @@
 # Ignorar todos los archivos
-*
+#*
 
-# Permitir directorios y archivos con las extensiones .hs, .pl y .wlk
-!*/
-!.gitignore
-!*.hs
-!*.pl
-!*.wlk
+# Permitir directorios y archivos con las extensiones .hs, .pl, .wlk, .json y .wtest
+#!*/
+#!.gitignore
+#!*.hs
+#!*.pl
+#!*.wlk
+#!*.json
+#!*.wtest
+
