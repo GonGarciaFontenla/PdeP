@@ -34,7 +34,7 @@ Para instalar Prolog, sigue las instrucciones disponibles en el siguiente enlace
 
 ### Instalación de Wollok
 
-Para instalar Wollok, sigue las instrucciones disponibles en el siguiente enlace: [Instalación de Wollok](https://www.wollok.org/instalacion/).
+Para instalar Wollok, sigue las instrucciones disponibles en el siguiente enlace: [Instalación de Wollok](https://www.wollok.org/getting_started/installation/).
 
 ## Contribuidores
 
