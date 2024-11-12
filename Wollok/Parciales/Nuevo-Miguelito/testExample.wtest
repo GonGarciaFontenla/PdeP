@@ -1,0 +1,91 @@
+import personas.* 
+import planeta.* 
+import construcciones.*
+import regiones.*
+import tecnicas.*
+describe "Tests de planeta con cuatro habitantes, dos murallas y un museo." { 
+    test "delegacion diplomatica formado por 3" {
+        const persona1 = new Persona(edad = 20, recursos = 10)
+        const persona2 = new Persona(edad = 60, recursos = 20)
+        const persona3 = new Persona(edad = 10, recursos = 1000) //Gano una herencia familiar
+        const persona4 = new Persona(edad = 110, recursos = 20)
+
+        const planet = new Planeta(habitantes = [persona1, persona2, persona3, persona4])
+
+        planet.conformacionDelegacion()
+
+        assert.that(planet.delegacionDiplomatica().size() == 3)
+    }
+
+    test "planeta es valioso" {
+        const muralla1 = new Muralla(longitud = 10)
+        const muralla2 = new Muralla(longitud = 20)
+
+        const planet = new Planeta(construcciones = [muralla1, muralla2])
+
+        assert.that(planet.esValioso())
+    }
+
+    test "delegacion diplomatica formado por 2" {
+        const persona1 = new Persona(edad = 20, recursos = 10)
+        const persona2 = new Persona(edad = 60, recursos = 20)
+        const persona3 = new Persona(edad = 10, recursos = 1000) //Gano una herencia familiar
+        const persona4 = new Persona(edad = 110, recursos = 10)
+
+        persona3.gastarMonedas(999)
+        
+        const planet = new Planeta(habitantes = [persona1, persona2, persona3, persona4])
+        planet.conformacionDelegacion()
+
+        assert.that(planet.delegacionDiplomatica().size() == 2)
+    }
+}
+
+describe "Tests de planeta con 1 habitante, una muralla y un museo" { 
+    test "planeta not es valioso" {
+        const muralla = new Muralla(longitud = 2)
+        const museo = new Museo(superficie = 5, importancia = 2)
+
+        const planet = new Planeta(construcciones = [muralla, museo])
+
+        assert.notThat(planet.esValioso())
+    }
+}
+
+describe "Tests de constructores" {
+    test "constructor de la region montania construye en planeta" {
+        const muralla = new Muralla(longitud = 10)
+        const construc = new Constructor(construccionesRealizadas = [muralla], regionVive = montania, cantMonedas = 10) 
+        const planet = new Planeta(construcciones = [muralla])
+
+        construc.construir(planet, 2) 
+
+        assert.that(construc.construccionesRealizadas().size() == 2)
+        assert.that(construc.cantMonedas() == 5)
+    }
+}
+
+describe "Tests de productores" {
+  test "productor aprende nueva habilidad" {
+    const productor = new Productor(tecnicas = [apicultura])
+    productor.aprenderTecnica(ganaderia)
+
+    assert.that(productor.tecnicas() == [apicultura, ganaderia])
+  }
+
+  test "productor intenta realizar tecnica que no conoce" {
+    const productor = new Productor(tecnicas = [apicultura])
+    productor.cantRecursos()
+    productor.realizarTecnica(ganaderia, 1)
+
+    assert.that(productor.recursos() == 19)
+  }
+
+  test "productor realiza tecnica y sus recursos son 49" {
+    const productor = new Productor(tecnicas = [apicultura, ganaderia])
+    productor.cantRecursos() //40
+    productor.realizarTecnica(ganaderia, 3) //recursos +9
+
+    assert.that(productor.recursos() == 49)
+  }
+}
