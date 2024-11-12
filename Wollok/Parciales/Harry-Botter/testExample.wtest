@@ -1,0 +1,73 @@
+import bots.*
+import casas.*
+import hechizeros.*
+import hechizos.*
+import hogwarts.*
+
+describe "Tests generales" {
+  test "Sombrero distribuye a grupo de estudiantes en casas" {
+    const estudiante1 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+    const estudiante2 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+    const estudiante3 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+    const estudiante4 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+    const estudiante5 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+
+    sombrero.asignarCasa(estudiante1)
+    sombrero.asignarCasa(estudiante2)
+    sombrero.asignarCasa(estudiante3)
+    sombrero.asignarCasa(estudiante4)
+    sombrero.asignarCasa(estudiante5)
+
+    assert.that(estudiante2.casa() == slytherin)
+    assert.that(estudiante5.casa() == gryffindor)
+  }
+
+  test "Snape da una materia y enseña avadakedabra" {
+    const snape = new Profesor(cargaElectrica = 1000, estadoAceite = true)
+    const harry = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+
+    const defensaContraLasArtesOscuras = hogwarts.crearMateria(snape, avadakedabra)
+    harry.asistirAclase(defensaContraLasArtesOscuras)
+
+    assert.that(snape.materias().contains(defensaContraLasArtesOscuras))
+    assert.that(harry.hechizos().contains(avadakedabra))
+  }
+
+  test "Grupo de alumnos asisten a materia y aprenden el hechizo enseniado" {
+    const estudiante1 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+    const estudiante2 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+    const estudiante3 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+    const estudiante4 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+    const estudiante5 = new Estudiante(cargaElectrica = 0, estadoAceite = true)
+
+    const snape = new Profesor(cargaElectrica = 1000, estadoAceite = true)
+    const defensaContraLasArtesOscuras = hogwarts.crearMateria(snape, avadakedabra)
+
+    hogwarts.grupoAlumnos([estudiante1, estudiante2, estudiante3, estudiante4, estudiante5])
+
+    hogwarts.grupoAsisteAMateria(defensaContraLasArtesOscuras)
+
+    assert.that(hogwarts.grupoAlumnos().all({a => a.hechizos().contains(avadakedabra)}))
+  }
+
+  test "Harry lanza avadakedabra a Draco y le deja la carga electrica en 0" {
+    const harry = new Estudiante(cargaElectrica = 50, estadoAceite = true, hechizos = [avadakedabra])
+    const draco = new Estudiante(cargaElectrica = 80, estadoAceite = true)
+
+    harry.lanzarHechizo(avadakedabra, draco)
+
+    assert.equals(0, draco.cargaElectrica())
+  }
+
+  test "Grupo lanzan el ultimo hechizo que dispone cada uno a un bot cuyo nombre nadie pronuncia (Voldermort)"{
+    const harry = new Estudiante(cargaElectrica = 60, estadoAceite = true, hechizos = [avadakedabra, inmobilus, espectroPatronus, sectumSempra])
+    const hermione = new Estudiante(cargaElectrica = 50, estadoAceite = true, hechizos = [inmobilus, avadakedabra])
+    const draco = new Estudiante(cargaElectrica = 80, estadoAceite = true, hechizos = [avadakedabra, espectroPatronus]) //Lo cura 20 a volde
+
+    hogwarts.grupoAlumnos([harry, hermione, draco])
+    hogwarts.grupoLanzaHechizos(innombrable)
+
+    assert.notThat(innombrable.estadoAceite())
+    assert.equals(20, innombrable.cargaElectrica())
+  }
+}
