@@ -1,0 +1,16 @@
+import cocineros.*
+import torneo.*
+import platos.*
+
+describe "Tests de pastelero" {
+  const gonza = new Cocinero(especialidad = new Pastelero(nivelAzucar = 100))
+  test "Un pastelero califica bien sin pasarse del máximo" {
+    const plato = new Postre(cantColores = 2, cocinero = gonza)
+    assert.equals(6, gonza.catar(plato))
+  }
+
+  test "Un pastelero califica sin pasar del máximo" {
+		const fideosConTuco = new Principal(bonito = false, azucar = 9999, cocinero = gonza)
+		assert.equals(10, gonza.catar(fideosConTuco))
+	}
+}
