@@ -1,0 +1,56 @@
+import comensales.*
+import comidas.*
+import miguelito.*
+
+
+const corteAPunto = new Carne(peso=100, aPunto = true)
+const parrilladaDeCortes = new Parrillada(platos = [corteAPunto, corteAPunto, corteAPunto])
+const hamburguesaConGluten = new Hamburguesa(pesoMedallon = 100, tipoPan = industrial)
+
+describe "test de parrilla"{
+	const corteGrande = new Carne(peso=500, aPunto=true)
+	const corteChiquito = new Carne(peso=10, aPunto=true)
+	const parrilladaConGluten = new Parrillada(platos=[hamburguesaConGluten, corteAPunto, corteAPunto])
+	const parrilladaChiquita = new Parrillada(platos=[corteGrande])
+	const parrilladaPocoPeso = new Parrillada(platos=[corteChiquito, corteChiquito, corteChiquito])
+
+    test "El peso de la parrillada es la suma del peso de sus componentes" {
+        assert.equals(300, parrilladaDeCortes.peso())
+    }
+
+    test "La valoracion de la parrillada es la valoracion maxima de las valoraciones de sus componentes" {
+        assert.equals(100, parrilladaDeCortes.valoracion())
+    }
+    
+    test "Una parrillada es apta celiaca si sus componentes lo son" {
+        assert.that(parrilladaDeCortes.aptoCeliaco())
+    }
+
+    test "Una parrillada no es apta celiaca si uno de sus componentes no lo es"{
+        assert.notThat(parrilladaConGluten.aptoCeliaco())
+    }
+}
+
+describe "Comensal"{
+	
+	const comensalCeliaco = new Comensal(dinero=10000, condicion = celiaco)
+	const comensalTodoTerreno = new Comensal(dinero=10000, condicion = todoTerreno)
+	
+	method initialize(){
+		miguelito.agregarPlatoAlMenu(hamburguesaConGluten)
+	}
+	
+	test "Un comensal se puede dar un gusto" {
+		comensalTodoTerreno.darGusto()
+		assert.equals(comensalTodoTerreno.dinero(), 5200)
+	}
+	
+	test "Un comensal no se puede dar un gusto" {
+		assert.throwsExceptionWithMessage("No hay platos para comprar", {comensalCeliaco.darGusto()})
+	}
+	
+	test "Un comensal todo terreno no puede comer con gluten si le dieron problemas gastricos" {
+		comensalTodoTerreno.problemasGastriticos()
+		assert.throwsExceptionWithMessage("No hay platos para comprar", {comensalTodoTerreno.darGusto()})
+	}
+}

@@ -1,12 +1,8 @@
 class Plato {
-    var precio
-
     method aptoCeliaco()
     method peso()
 
-    method calcularPrecio() {
-        precio = self.valoracion() * 300 + self.montoPorCeliaquia()
-    }
+    method precio() = self.valoracion() * 300 + self.montoPorCeliaquia()
 
     method montoPorCeliaquia() = if(self.aptoCeliaco()) 1200 else 0
 
@@ -31,7 +27,7 @@ class Hamburguesa inherits Plato{
 
     override method peso() = pesoMedallon + tipoPan.peso()
 
-    override method aptoCeliaco() = tipoPan.celiaco()
+    override method aptoCeliaco() = tipoPan.aptoCeliaco()
 }
 
 class HamburguesaDoble inherits Hamburguesa{
@@ -40,11 +36,14 @@ class HamburguesaDoble inherits Hamburguesa{
     override method peso() = pesoMedallon * 2 + tipoPan. peso() 
 }
 
-class Pan { const peso    const celiaco }
+class Pan { 
+    var property peso    
+    var property aptoCeliaco 
+}
 
-const industrial = new Pan(peso = 60, celiaco = false)
-const casero = new Pan(peso = 100, celiaco = false)
-const maiz = new Pan(peso = 30, celiaco = true)
+const industrial = new Pan(peso = 60, aptoCeliaco = false)
+const casero = new Pan(peso = 100, aptoCeliaco = false)
+const maiz = new Pan(peso = 30, aptoCeliaco = true)
 
 class Carne inherits Plato {
     const aPunto
@@ -59,7 +58,7 @@ class Carne inherits Plato {
     override method aptoCeliaco() = true
 }
 
-class Parillada inherits Plato{
+class Parrillada inherits Plato{
     var platos = []
 
     override method peso() = platos.sum({p => p.peso()})
