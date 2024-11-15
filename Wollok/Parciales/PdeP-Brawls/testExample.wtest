@@ -1,0 +1,73 @@
+import browlers.*
+import misiones.*
+
+const boost = new MisionBoost(multiplicador = 10)
+describe "Tests de mision indivual" {
+
+  test "Mision individual no puede comenzar" {
+    const spyke = new Arquero(copas = 2, agilidad = 20, rango = 30)
+    const mision = new MisionIndividual(tipoMision = boost, dificultad = 10, personaje = spyke)
+
+    assert.throwsExceptionWithMessage("Mision no puede comenzar", { mision.participarMision() })
+  }
+
+  test "Spyke gana mision individual y aumenta sus copas" {
+    const spyke = new Arquero(copas = 30, agilidad = 20, rango = 30)
+    const mision = new MisionIndividual(tipoMision = boost, dificultad = 10, personaje = spyke)
+
+    mision.participarMision()
+
+    assert.equals(230, spyke.copas())
+  }
+
+  test "Spyke pierde mision individual y disminuyen sus copas" {
+    const spyke = new Arquero(copas = 200, agilidad = 1, rango = 2)
+    const mision = new MisionIndividual(tipoMision = boost, dificultad = 10, personaje = spyke)
+
+    mision.participarMision()
+
+    assert.equals(0, spyke.copas())
+  }
+}
+
+describe "Test de mision grupal" {
+  test "Mision en equipo no puede comenzar" {
+    const spyke = new Arquero(copas = 2, agilidad = 20, rango = 30)
+    const juju = new Guerrera(copas = 2, estrategia = true, fuerza = 30)
+    const shade = new Ballestero(copas = 2, agilidad = 20, rango = 30)
+
+    const mision = new MisionEquipo(tipoMision = boost, participantes = [spyke, juju, shade])
+
+    assert.throwsExceptionWithMessage("Mision no puede comenzar", { mision.participarMision() })
+  }
+
+  test "Equipo gana una mision en equipo y aumentan sus copas" {
+    const spyke = new Arquero(copas = 20, agilidad = 20, rango = 150)
+    const juju = new Guerrera(copas = 20, estrategia = true, fuerza = 150)
+    const shade = new Ballestero(copas = 20, agilidad = 20, rango = 150)
+    const clancy = new Ballestero(copas = 200, agilidad = 20, rango = 150)
+    const lily = new Ballestero(copas = 20, agilidad = 20, rango = 150)
+
+    const mision = new MisionEquipo(tipoMision = boost, participantes = [spyke, juju, shade, clancy, lily])
+
+    mision.participarMision()
+
+    assert.equals(120, spyke.copas())
+    assert.equals(300, clancy.copas())
+  }
+  test "Equipo pierde una mision en equipo y disminuyen sus copas" {
+    const spyke = new Arquero(copas = 100, agilidad = 20, rango = 30)
+    const juju = new Guerrera(copas = 100, estrategia = true, fuerza = 30)
+    const shade = new Ballestero(copas = 200, agilidad = 20, rango = 30)
+    const clancy = new Ballestero(copas = 100, agilidad = 20, rango = 30)
+    const lily = new Ballestero(copas = 100, agilidad = 20, rango = 30)
+
+    const mision = new MisionEquipo(tipoMision = boost, participantes = [spyke, juju, shade, clancy, lily])
+
+    mision.participarMision()
+
+    assert.equals(0, spyke.copas())
+    assert.equals(100, shade.copas())
+
+  }
+}
