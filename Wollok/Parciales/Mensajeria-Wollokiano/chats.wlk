@@ -1,0 +1,4 @@
+class Chat {
+    var participantes
+    
+}
