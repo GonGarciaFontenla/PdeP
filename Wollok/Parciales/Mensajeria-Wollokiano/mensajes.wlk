@@ -1,23 +1,33 @@
 class Mensajes {
-  var remitente
+  var emisor
   var contenido
 
   method peso() = 5 + contenido.peso() * 1.3
+
+  method contiene(texto) = emisor.contiene(texto) or contenido.contiene(texto)
 }
 
 class Texto {
   var texto
   method peso() = texto.size()
+
+  method contiene(_texto) = texto.contains(_texto)
 }
 
 class Audio {
   var duracion
 
   method peso() = 1.2 * duracion
+
+  method contiene(texto) = false
 }
 
 class Contacto {
+  const usuario
+
   method peso() = 3
+
+  	method contiene(texto) = usuario.contiene(texto)
 }
 
 class Imagen {
@@ -28,6 +38,8 @@ class Imagen {
   method cantidadPixeles() = alto * ancho
 
   method peso() = comprension.pixelesAenviar(self.cantidadPixeles()) * 2
+
+  method contiene(texto) = false
 }
 
 class Gif inherits Imagen {
