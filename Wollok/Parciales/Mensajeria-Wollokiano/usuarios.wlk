@@ -1,0 +1,3 @@
+class Usuario {
+    var memoria
+}
