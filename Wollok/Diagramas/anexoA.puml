@@ -1,0 +1,37 @@
+@startuml ejemplo
+
+class ConsumidorFinal {
+    impuesto(monto)
+}
+
+class ResponsableInscripto{
+    impuesto(monto)
+}
+
+class ResponsableNoInscripto {
+    impuesto(monto)
+}
+
+class Cliente {
+    condicionIVA
+    saldo
+
+    comprar(producto)
+}
+
+class Producto {
+    precio()
+}
+
+class ProductoEspecial {
+    precio()
+}
+
+interface CondicionIVA
+CondicionIVA <|.. ConsumidorFinal
+CondicionIVA <|.. ResponsableInscripto
+CondicionIVA <|.. ResponsableNoInscripto
+CondicionIVA <-- Cliente
+
+Producto <|-- ProductoEspecial
+Producto <.. Cliente

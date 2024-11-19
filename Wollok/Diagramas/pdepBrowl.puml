@@ -1,0 +1,88 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+abstract class Mision {
+    tipoMision
+    superarMision()
+    participarMision()
+}
+
+class MisionIndividual {
+    dificultad
+    personaje
+    destrezaSuficiente()
+    estrategiaSuficiente()
+    copasAganar()
+    repartirCopas()
+    sePuedeRealizar()
+}
+
+class MisionEquipo {
+    participantes
+    destrezaSuficiente()
+    estrategiaSuficiente()
+    copasAganar()
+    repartirCopas()
+    sePuedeRealizar()
+}
+
+Mision <|-- MisionIndividual
+Mision <|-- MisionEquipo
+
+interface TipoMision
+
+TipoMision <- Mision
+TipoMision <|.. misionComun
+TipoMision <|.. MisionBoot
+TipoMision <|.. misionBonus
+
+MisionIndividual -->"1" Personaje
+MisionIndividual -->"*" Personaje
+
+Mision <.. misionComun
+Mision <.. MisionBoot
+Mision <.. misionBonus
+
+object misionComun <<object>>{
+    cantCopasIncremento(mision)
+}
+
+class MisionBoot {
+    multiplicador
+    cantCopasIncremento(mision)
+}
+
+object misionBonus <<object>>{
+    cantCopasIncremento(mision)
+}
+
+
+
+class Personaje {
+    copas
+    darCopas(_copas)
+}
+
+class Arquero {
+    agilidad
+    rango
+    destreza()
+    estrategia()
+}
+
+class Guerrera {
+    fuerza
+    destreza()
+    estrategia()
+}
+
+class Ballestero {
+    destreza()
+}
+
+Personaje <|-- Arquero
+Personaje <|-- Guerrera
+Arquero <|-- Ballestero
+
+@enduml
