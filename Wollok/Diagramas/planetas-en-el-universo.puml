@@ -1,0 +1,88 @@
+@startuml planetas-en-el-universo
+
+class Planeta {
+    habitantes
+    construcciones
+    delegacionDiplomatica
+    conformacionDelegacion()
+    mayorRecursos(habitante)
+    esValioso()
+}
+
+class Persona {
+    recursos
+    cantMonedas
+    edad
+    ganarMonedas(coins)
+    gastarMonedas(coins)
+    cumplirAnios()
+    esDestacado()
+    condDestacado()
+}
+
+class Productor {
+    tecnicas
+    cantRecursos()
+    esDestacado()
+    realizarTecnica(tecnica, tiempo)
+    aprenderTecnica(tecnica)
+    trabajarEnPlaneta(planeta, time)
+}
+
+class Constructor {
+    construccionesRealizadas
+    regionVive
+    cantRecursos()
+    esDestacado()
+    construir(planeta, tiempo)
+}
+
+class Muralla {
+    longitud
+    precioMedida
+    valor()
+}
+
+class Museo {
+    superficie
+    importancia
+    valor()
+}
+
+class Region {
+    addConstruccion(planeta, construct, construccion) 
+}
+
+object montania <<object>> {
+    construccionDeRegion(construct, planeta, time)
+} 
+
+object costa <<object>> {
+    construccionDeRegion(construct, planeta, time) 
+}
+
+object llanura <<object>> { 
+    construccion
+    construccionDeRegion(construct, planeta, time)
+    tipoConstruccion(construct, time) 
+}
+
+class Tecnica {
+    monedasAGanar
+}
+
+Planeta -->"*" Persona
+Planeta -->"*" Muralla
+Planeta -->"*" Museo
+Persona <|-- Productor
+Persona <|-- Constructor
+
+Constructor --> Region
+Productor -->"*" Tecnica
+
+Region <|-- montania
+Region <|-- costa
+Region <|-- llanura
+
+
+@enduml
