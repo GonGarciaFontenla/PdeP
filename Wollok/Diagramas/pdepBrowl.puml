@@ -27,24 +27,7 @@ class MisionEquipo {
     sePuedeRealizar()
 }
 
-Mision <|-- MisionIndividual
-Mision <|-- MisionEquipo
-
-interface TipoMision
-
-TipoMision <- Mision
-TipoMision <|.. misionComun
-TipoMision <|.. MisionBoot
-TipoMision <|.. misionBonus
-
-MisionIndividual -->"1" Personaje
-MisionIndividual -->"*" Personaje
-
-Mision <.. misionComun
-Mision <.. MisionBoot
-Mision <.. misionBonus
-
-object misionComun <<object>>{
+object misionComun <<object>> {
     cantCopasIncremento(mision)
 }
 
@@ -53,11 +36,9 @@ class MisionBoot {
     cantCopasIncremento(mision)
 }
 
-object misionBonus <<object>>{
+object misionBonus <<object>> {
     cantCopasIncremento(mision)
 }
-
-
 
 class Personaje {
     copas
@@ -84,5 +65,21 @@ class Ballestero {
 Personaje <|-- Arquero
 Personaje <|-- Guerrera
 Arquero <|-- Ballestero
+
+Mision <|-- MisionIndividual
+Mision <|-- MisionEquipo
+
+interface TipoMision
+TipoMision <- Mision
+TipoMision <|.. misionComun
+TipoMision <|.. MisionBoot
+TipoMision <|.. misionBonus
+
+MisionIndividual -->"1" Personaje
+MisionIndividual -->"*" Personaje
+
+Mision <.. misionComun
+Mision <.. MisionBoot
+Mision <.. misionBonus
 
 @enduml
