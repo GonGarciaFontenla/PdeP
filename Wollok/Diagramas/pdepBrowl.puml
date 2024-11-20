@@ -1,4 +1,4 @@
-@startuml
+@startuml pdep-browl
 !define DARKBLUE
 !includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
 
@@ -76,7 +76,7 @@ TipoMision <|.. MisionBoot
 TipoMision <|.. misionBonus
 
 MisionIndividual -->"1" Personaje
-MisionIndividual -->"*" Personaje
+MisionEquipo -->"*" Personaje
 
 Mision <.. misionComun
 Mision <.. MisionBoot
