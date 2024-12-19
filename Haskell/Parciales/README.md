@@ -4,6 +4,9 @@ En esta sección encontrarás enlaces a las consignas de los parciales resueltos
 
 ## Parciales
 
+### Plagio di plagio
+- [Año 2024](https://docs.google.com/document/d/1ilESbsH_umXHRznhN0SOOhzjaR7f52qYOy677lczu7s/edit)
+
 ### CraftMine
 - [Año 2023](https://docs.google.com/document/d/1i9rB5AzRswz_0Z4T1v5IgRhC3UT-d_Ib1K7LUeq5sa0/edit)
 
